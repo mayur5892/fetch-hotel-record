@@ -55,9 +55,6 @@ public class HotelRecordApiImpl implements HotelRecordApi {
 		validate(latitude, longitude);
 		HotelRecordRequestParam requestParam = createInitializeRequestParam(limit, offset, sortBy, amenityFilterBy);
 		requestParam.setRadius(radius == null ? propertyReader.getRadius() : radius);
-		System.out.println("Prinitng $ value");
-		System.out.println("${hotel.record.fetch.api.amenityfilterby}");
-
 		RetrieveHotelRecordResponse response = service.fetchFilteredHotelRecordsByGeoCode(latitude, longitude, requestParam);
 		Link link = linkTo(methodOn(this.getClass()).fetchHotelRecordsByGeoCode(latitude, longitude, requestParam.getRadius(), requestParam.getLimit(),
 				nextOffset(requestParam.getOffset(), requestParam.getLimit(), response.getCount()), requestParam.getSortBy(), requestParam.getAmenityFilterBy())).withRel("next");
