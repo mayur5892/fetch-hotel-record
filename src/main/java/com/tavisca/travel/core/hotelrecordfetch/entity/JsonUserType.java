@@ -28,8 +28,6 @@ public class JsonUserType implements UserType {
 
 	@Override
 	public Class<HotelRecord> returnedClass() {
-		System.out.println("	");
-		System.out.println(Thread.currentThread().getStackTrace());
 		return HotelRecord.class;
 	}
 
@@ -38,7 +36,6 @@ public class JsonUserType implements UserType {
 		if (x == null) {
 			return y == null;
 		}
-		System.out.println("x is instance of " + x.getClass().getName());
 		return x.equals(y);
 	}
 
@@ -74,7 +71,7 @@ public class JsonUserType implements UserType {
 			final StringWriter w = new StringWriter();
 			mapper.writeValue(w, value);
 			w.flush();
-			st.setObject(index, w.toString(), Types.OTHER);
+			st.setObject(index, w.toString(), Types.JAVA_OBJECT);
 		} catch (final Exception ex) {
 			throw new RuntimeException("Failed to convert Invoice to String: " + ex.getMessage(), ex);
 		}

@@ -3,9 +3,7 @@ package com.tavisca.travel.core.hotelrecordfetch.model;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.hateoas.ResourceSupport;
-
-public class HotelRecord extends ResourceSupport implements Serializable {
+public class HotelRecord implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,6 +21,15 @@ public class HotelRecord extends ResourceSupport implements Serializable {
 	private List<Image> images;
 	private List<Amenity> amenities;
 	private List<CheckinOutPolicy> checkinCheckoutPolicy;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(final String id) {
+		this.id = id;
+	}
+
 	private List<Description> descriptions;
 
 	public List<SuppliersMappedIds> getSuppliersMappedIds() {
@@ -98,16 +105,6 @@ public class HotelRecord extends ResourceSupport implements Serializable {
 
 	public void setGeoCode(final Geocode geoCode) {
 		this.geoCode = geoCode;
-	}
-
-
-
-	public String getHotelId() {
-		return id;
-	}
-
-	public void setId(final String id) {
-		this.id = id;
 	}
 
 	public String getSupplierFamily() {

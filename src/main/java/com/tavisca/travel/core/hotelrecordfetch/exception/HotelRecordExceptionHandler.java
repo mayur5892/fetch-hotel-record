@@ -40,7 +40,6 @@ public class HotelRecordExceptionHandler extends ResponseEntityExceptionHandler 
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex, final HttpHeaders headers, final HttpStatus status,
 			final WebRequest request) {
 		HotelRecordExceptionResponse exceptionResponse = new HotelRecordExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
-		System.out.println(ex.getMessage());
 		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
 

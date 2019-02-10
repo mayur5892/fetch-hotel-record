@@ -22,10 +22,10 @@ public class HotelRecordService {
 	private HotelRecordResponseBuilder responseBuilder;
 
 	@Autowired
-	private CachingRepository repository;
+	private CachingRepository hotelRecordCache;
 
 	public RetrieveHotelRecordResponse fetchHotelRecordsByLocation(final String location, final HotelRecordRequestParam requestParams) {
-		List<HotelRecord> hotelRecords = repository.fetchHotelRecordsByLocation(location, requestParams.getSortBy());
+		List<HotelRecord> hotelRecords = hotelRecordCache.fetchHotelRecordsByLocation(location, requestParams.getSortBy());
 		if (hotelRecords == null || hotelRecords.isEmpty())
 			throw new HotelRecordNotFoundException("No hotels found for location " + location);
 		return responseBuilder.buildRetrieveHotelRecordResposne(hotelRecords, requestParams);
@@ -34,7 +34,7 @@ public class HotelRecordService {
 
 	public RetrieveHotelRecordResponse fetchFilteredHotelRecordsByLocation(final FilterHotelRecordRequest filterRequest, final String location,
 			final HotelRecordRequestParam requestParams) {
-		List<HotelRecord> hotelRecords = repository.fetchHotelRecordsByLocation(location, requestParams.getSortBy());
+		List<HotelRecord> hotelRecords = hotelRecordCache.fetchHotelRecordsByLocation(location, requestParams.getSortBy());
 		if (hotelRecords == null || hotelRecords.isEmpty())
 			throw new HotelRecordNotFoundException("No hotels found for location " + location);
 		return responseBuilder.buildFilteredRetrieveHotelRecordResposne(filterRequest, hotelRecords, requestParams);
@@ -42,7 +42,14 @@ public class HotelRecordService {
 	}
 
 	public HotelRecord getHotelRecordById(final String id) {
-		return repository.getHotelRecordById(id);
+		return hotelRecordCache.getHotelRecordById(id);
+	}
+
+	public RetrieveHotelRecordResponse fetchFilteredHotelRecordsByGeoCode(final Double latitude, final Double longitude, final HotelRecordRequestParam requestParam) {
+		 List<HotelRecord> hotelRecords = hotelRecordCache.fetchHotelRecordsByGeoCode(latitude, longitude, requestParam.getSortBy(), requestParam.getRadius());
+		 if (hotelRecords == null || hotelRecords.isEmpty())
+			throw new HotelRecordNotFoundException("No hotels found near GeoCode (" + latitude + ", " + longitude + ")");
+			return responseBuilder.buildRetrieveHotelRecordResposne(hotelRecords, requestParam);
 	}
 
 }

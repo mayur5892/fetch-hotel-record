@@ -74,7 +74,7 @@ not create URIs themselves, instead they should use the above-described links to
 
 It fetches the hotelrecord with the provided hotelId.
 
-[[resources-index-access]]
+[[resources-index-GetHotelById]]
 === fetch hotel by hotelId
 
 A `GET` request is used to fetch the hotel
@@ -116,11 +116,34 @@ include::{snippets}/hotelrecord/get-by-location/http-response.adoc[]
 ==== CURL request
 include::{snippets}/hotelrecord/get-by-location/curl-request.adoc[]
 
+[[resources-GetHotelRecordByGeoCode]]
+== GetHotelRecordByGeoCode
+
+It fetches the nearby hotelrecords with the provided latitude and longitude of the given point.
+
+[[resources-index-GetHotelRecordByGeoCode]]
+=== fetch hotelrecords by geoCode provided
+
+A `GET` request is used to fetch the hotel
+
+==== Path Parameters
+include::{snippets}/hotelrecord/get-by-geoCode/path-parameters.adoc[]
+
+==== Request structure
+
+include::{snippets}/hotelrecord/get-by-geoCode/http-request.adoc[]
+
+==== Response
+include::{snippets}/hotelrecord/get-by-geoCode/http-response.adoc[]
+
+==== CURL request
+include::{snippets}/hotelrecord/get-by-geoCode/curl-request.adoc[]
+
 
 [[resources-GetFilteredHotelRecordByLocation]]
 == GetFilteredHotelRecordByLocation
 It fetches all the hotelrecords which are located at the provided location name.
-[[resources-index-access]]
+[[resources-index-GetFilteredHotelRecordByLocation]]
 === fetch filtered hotelrecords by location
 
 A `POST` request is used to fetch the filtered hotel by location
@@ -141,6 +164,8 @@ include::{snippets}/hotelrecord/get-filtered-record-by-location/http-response.ad
 
 ==== CURL request
 include::{snippets}/hotelrecord/get-filtered-record-by-location/curl-request.adoc[]
+
+
 
 
  

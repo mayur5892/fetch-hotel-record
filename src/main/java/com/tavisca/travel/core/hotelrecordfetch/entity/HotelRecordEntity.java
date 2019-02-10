@@ -43,52 +43,67 @@ public class HotelRecordEntity implements Serializable {
 
 
 	@Column(name = "HOTEL_DATA")
-	@Type(type = "JsonUserType")
+	@Type(type = "com.tavisca.travel.core.hotelrecordfetch.entity.JsonUserType")
 	private com.tavisca.travel.core.hotelrecordfetch.model.HotelRecord hotelRecord;
 
 	@Column(name = "IS_LATEST")
 	private boolean isLatest;
 
-	public com.tavisca.travel.core.hotelrecordfetch.model.HotelRecord getHotelRecord() {
-		return hotelRecord;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(final Integer id) {
+		this.id = id;
 	}
 
 	public String getHotelId() {
 		return hotelId;
 	}
 
-	public boolean isIsLatest() {
-		return isLatest;
-	}
-
-	public double getHotelRating() {
-		return hotelRating;
+	public void setHotelId(final String hotelId) {
+		this.hotelId = hotelId;
 	}
 
 	public String getHotelLocation() {
 		return hotelLocation;
 	}
 
-	public void setIsLatest(final boolean isLatest) {
-		this.isLatest = isLatest;
+	public void setHotelLocation(final String hotelLocation) {
+		this.hotelLocation = hotelLocation;
 	}
 
-	public HotelRecordEntity() {
+	public double getHotelRating() {
+		return hotelRating;
+	}
 
+	public void setHotelRating(final double hotelRating) {
+		this.hotelRating = hotelRating;
 	}
 
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
-
-
-
-
-	public Integer getId() {
-		return id;
+	public void setCreationDate(final Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
+	public com.tavisca.travel.core.hotelrecordfetch.model.HotelRecord getHotelRecord() {
+		return hotelRecord;
+	}
+
+	public void setHotelRecord(final com.tavisca.travel.core.hotelrecordfetch.model.HotelRecord hotelRecord) {
+		this.hotelRecord = hotelRecord;
+	}
+
+	public boolean isLatest() {
+		return isLatest;
+	}
+
+	public void setLatest(final boolean isLatest) {
+		this.isLatest = isLatest;
+	}
 
 	@Override
 	public boolean equals(final Object obj) {

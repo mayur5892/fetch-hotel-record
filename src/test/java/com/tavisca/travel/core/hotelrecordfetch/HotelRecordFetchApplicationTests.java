@@ -53,7 +53,7 @@ public class HotelRecordFetchApplicationTests {
 	@Test
 	public void getHotelByIdTest() throws Exception {
 		this.mockMvc.perform(RestDocumentationRequestBuilders
-				     .get("/hotelrecord/{id}", 2962701))
+				.get("/hotelrecord/id/{id}", 2962701))
 		             .andExpect(status().isOk())
 				     .andExpect(content().contentType("application/json;charset=UTF-8"))
 				     .andDo(document("hotelrecord/get-by-id",
@@ -78,6 +78,16 @@ public class HotelRecordFetchApplicationTests {
 	}
 	
 	@Test
+	public void getHotelRecordByGeoCode() throws Exception {
+		this.mockMvc.perform(RestDocumentationRequestBuilders.get("/hotelrecords/latitude/{latitude}/longitude/{longitude}", 49.00435, 2.520804)).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andDo(document("hotelrecord/get-by-geoCode",
+						pathParameters(parameterWithName("latitude").description("Latitude of the point for searching nearby hotels."),
+								parameterWithName("longitude").description("Longitude of the point for searching nearby hotels."))));
+
+	}
+
+	@Test
 	public void fetchFilteredHotelRecordsByLocationTest()throws Exception{
 		FilterHotelRecordRequest request=new FilterHotelRecordRequest();
 		request.setMinimumRating(4);
@@ -98,5 +108,6 @@ public class HotelRecordFetchApplicationTests {
 		            ;
 		
 	}
+
 }
 
